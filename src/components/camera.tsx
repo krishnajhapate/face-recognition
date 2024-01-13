@@ -86,7 +86,7 @@ const CameraComponent: React.FC = () => {
 
                 // Call your API with FormData
                 const response = await fetch(
-                    "https://a7ee-183-83-173-69.ngrok-free.app/api-micro/verify-with-image",
+                    "https://b3c0-183-83-173-69.ngrok-free.app/api-micro/verify-with-image",
                     {
                         method: "POST",
                         body: formData,
