@@ -7,9 +7,8 @@ const FaceCaptureComponent: React.FC = () => {
     const [capturedImage, setCapturedImage] = useState<string | null>(null);
     const [isCameraOpen, setIsCameraOpen] = useState(false);
     const [isImageCaptured, setIsImageCaptured] = useState(false);
+    const [isLoading, setLoading] = useState(false);
     const videoRef = useRef<HTMLVideoElement>(null);
-
-
 
     const openCamera = async () => {
         try {
@@ -53,6 +52,7 @@ const FaceCaptureComponent: React.FC = () => {
     };
 
     const sendImageToBackend = async () => {
+        setLoading(true);
         try {
             // Convert Data URL to Blob
             const base64Data = capturedImage?.split(",")[1];
@@ -86,12 +86,14 @@ const FaceCaptureComponent: React.FC = () => {
             }
             setTimeout(() => {
                 window.location.reload();
-            }, 1000);
+            }, 5000);
             setCapturedImage(null);
             setIsCameraOpen(false);
         } catch (error) {
             console.error("Error sending image to the backend:", error);
             toast.error("Error adding face.");
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -125,7 +127,12 @@ const FaceCaptureComponent: React.FC = () => {
             ) : !isImageCaptured ? (
                 <Button onClick={() => captureImage()}>Capture</Button>
             ) : (
-                <Button onClick={() => sendImageToBackend()}>Add Face</Button>
+                <Button
+                    disabled={isLoading}
+                    onClick={() => sendImageToBackend()}
+                >
+                    Add Face
+                </Button>
             )}
 
             <Toaster />

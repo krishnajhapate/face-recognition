@@ -33,7 +33,7 @@ const CameraVerificationComponent: React.FC<CameraComponentProps> = ({
                 console.log("Capturing image...");
                 captureImage();
                 attempts++;
-            }, 2000);
+            }, 3000);
         } catch (error) {
             console.error("Error accessing camera:", error);
         }
@@ -97,14 +97,14 @@ const CameraVerificationComponent: React.FC<CameraComponentProps> = ({
                 setTimeout(() => {
                     toast.success("Face Verification completed");
                     window.location.reload();
-                }, 5000);
+                }, 7000);
             } else {
                 if (attempts >= 4) {
                     clearInterval(captureInterval);
                     toast.error("Exceeded maximum attempts. Refresh the page.");
                     setTimeout(() => {
                         window.location.reload();
-                    }, 2000);
+                    }, 5000);
                     // Optionally, you can trigger a page refresh here
                 } else {
                     toast.error("Face not matched! Attempt #" + (attempts ));
