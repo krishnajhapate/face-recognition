@@ -96,6 +96,10 @@ const CameraVerificationComponent: React.FC<CameraComponentProps> = ({
 
                 setTimeout(() => {
                     toast.success("Face Verification completed");
+                }, 2000);
+
+                setTimeout(() => {
+                    toast.success("Face Verification completed");
                     window.location.reload();
                 }, 7000);
             } else {

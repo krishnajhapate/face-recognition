@@ -32,7 +32,7 @@ const CameraToggleComponent: React.FC = () => {
 
     return (
         <div className="flex flex-col items-center justify-center h-screen">
-            <Toaster />
+            <Toaster toastOptions={{ duration:5000 }} />
 
             <div className="mb-5">
                 <Button onClick={() => handleToggle()}>
