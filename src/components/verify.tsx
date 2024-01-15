@@ -13,7 +13,6 @@ const CameraVerificationComponent: React.FC<CameraComponentProps> = ({
     const [selectedUserId, setSelectedUserId] = useState<string | null>(null);
     const [capturedImage, setCapturedImage] = useState<string | null>(null);
     const [isFaceVerified, setIsFaceVerified] = useState(false);
-    const [isCameraOpen, setIsCameraOpen] = useState(false);
     const videoRef = useRef<HTMLVideoElement>(null);
     let captureInterval: NodeJS.Timeout;
 
@@ -28,7 +27,6 @@ const CameraVerificationComponent: React.FC<CameraComponentProps> = ({
             if (videoRef.current) {
                 videoRef.current.srcObject = stream;
             }
-            setIsCameraOpen(true);
 
             // Set up periodic image capture
             captureInterval = setInterval(() => {
